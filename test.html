@@ -61,6 +61,12 @@
 
 		var train = new THREE.Object3D();
 		scene.add(train);
+		
+		train.position.x += 15;
+		train.position.y += 2;
+		train.position.z -= 40;
+		train.rotation.y = 3/2 * Math.PI;
+
 
 		var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 500);
 		camera.rotation.y = Math.PI;
@@ -210,32 +216,9 @@
 
 			effect.requestAnimationFrame(animate);
 
-			var delta = time - prevTime;
-
-
-			progress += velocity;
-			progress = progress % 1;
-
-			// position.copy(curve.getPointAt(progress));
-			// position.y += 0.3;
-
-			// train.position.copy(position);
-			train.position.set(0, 20, 0);
-
-			tangent.copy(curve.getTangentAt(progress));
-
-			velocity -= tangent.y * 0.0000001 * delta;
-			velocity = Math.max(0.00004, Math.min(0.0002, velocity));
-
-			train.lookAt(lookAt.copy(position).add(tangent));
-
-			//
-
 			controls.update();
 
 			effect.render(scene, camera);
-
-			prevTime = time;
 
 		}
 
