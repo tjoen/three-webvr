@@ -216,10 +216,11 @@
 			progress += velocity;
 			progress = progress % 1;
 
-			position.copy(curve.getPointAt(progress));
+			// position.copy(curve.getPointAt(progress));
 			// position.y += 0.3;
 
-			train.position.copy(position);
+			// train.position.copy(position);
+			train.position.set(0, 20, 0);
 
 			tangent.copy(curve.getTangentAt(progress));
 
