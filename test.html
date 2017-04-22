@@ -204,6 +204,7 @@
 
 		var position = new THREE.Vector3();
 		var tangent = new THREE.Vector3();
+		var pos = new THREE.Vector3(-50, 0, -50);
 
 		var lookAt = new THREE.Vector3();
 
@@ -226,7 +227,7 @@
 				tangent.copy( curve.getTangentAt( progress ) );
 				velocity -= tangent.y * 0.0000001 * delta;
 				velocity = Math.max( 0.00004, Math.min( 0.0002, velocity ) );
-				train.lookAt( lookAt.copy( position ).add( tangent ) );
+				train.lookAt( pos );
 				//
 				controls.update();
 				effect.render( scene, camera );
