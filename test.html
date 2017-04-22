@@ -216,9 +216,21 @@
 
 			effect.requestAnimationFrame(animate);
 
-			controls.update();
+				var delta = time - prevTime;
 
-			effect.render(scene, camera);
+				progress += velocity;
+				progress = progress % 1;
+				position.copy( curve.getPointAt( progress ) );
+				position.y += 0.3;
+				train.position.copy( position );
+				tangent.copy( curve.getTangentAt( progress ) );
+				velocity -= tangent.y * 0.0000001 * delta;
+				velocity = Math.max( 0.00004, Math.min( 0.0002, velocity ) );
+				train.lookAt( lookAt.copy( position ).add( tangent ) );
+				//
+				controls.update();
+				effect.render( scene, camera );
+				prevTime = time;
 
 		}
 
